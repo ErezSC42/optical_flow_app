@@ -108,7 +108,9 @@ def video_quiver(video,optical_flow,N,threshold):
     anim = animation.FuncAnimation(fig, animate, frames=frame_count, fargs=(video,im,Q,optical_flow),blit=False, interval=40)
     fig.tight_layout()
     plt.title("optical flow of video N=" + str(N) + " threshold= " + str(threshold))
-    return fig, ax, anim
+    anim.save("seq_of.gif")
+    plt.show()
+    #return fig, ax, anim
 
 
 def kl_optical_flow_calc(video_path,N,thresold):
@@ -121,6 +123,6 @@ def kl_optical_flow_calc(video_path,N,thresold):
 if __name__ == "__main__":
     N = 16
     threshold = 0.5
-    video = load_gif_to_array("egg.gif")
-    of = kl_optical_flow_calc("egg.gif",N,threshold)
+    video = load_gif_to_array("seq.gif")
+    of = kl_optical_flow_calc("seq.gif",N,threshold)
     video_quiver(video,of,N,threshold)
